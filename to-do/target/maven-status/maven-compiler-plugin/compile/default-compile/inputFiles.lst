@@ -1,4 +1,7 @@
-/home/aka/Projects/to-do/src/main/java/com/aka/FileHandler.java
-/home/aka/Projects/to-do/src/main/java/com/aka/Main.java
-/home/aka/Projects/to-do/src/main/java/com/aka/Task.java
-/home/aka/Projects/to-do/src/main/java/com/aka/TaskManager.java
+/home/aka/Projects/Java-playground/to-do/src/main/java/com/aka/App.java
+/home/aka/Projects/Java-playground/to-do/src/main/java/com/aka/CLI.java
+/home/aka/Projects/Java-playground/to-do/src/main/java/com/aka/FileStorage.java
+/home/aka/Projects/Java-playground/to-do/src/main/java/com/aka/Storage.java
+/home/aka/Projects/Java-playground/to-do/src/main/java/com/aka/Task.java
+/home/aka/Projects/Java-playground/to-do/src/main/java/com/aka/TaskManager.java
+/home/aka/Projects/Java-playground/to-do/src/main/java/com/aka/UserInterface.java
