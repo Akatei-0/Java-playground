@@ -1,7 +1,8 @@
 package com.aka;
 
-import java.io.IOError;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class CLI implements UserInterface {
@@ -39,7 +40,7 @@ public class CLI implements UserInterface {
             printActionMenu();
             char actionMenuChoice = getUserInput("Choose an option: ").toLowerCase().charAt(0);
             switch (actionMenuChoice) {
-                case '5' -> showTasks();
+                // case '1' -> viewTask();
                 case '1' -> addTask();
                 case '2' -> removeTask();
                 case '3' -> markCompleted();
@@ -66,7 +67,8 @@ public class CLI implements UserInterface {
     }
     private void printActionMenu() {
         showTasks();
-        System.out.println("\n1. Add new task | 2. Remove a task | 3. Mark as completed | 4. Back to main menu");
+        // System.out.println("\n|1. View task.|2. Add new task.|3. Remove a task.|4. Mark as completed.|5. Back to main menu.|");
+        System.out.println("\n|1. Add new task.|2. Remove a task.|3. Mark as completed.|4. Back to main menu.|");
     }
     
     private String getUserInput(String message) {
@@ -74,16 +76,57 @@ public class CLI implements UserInterface {
         return SCANNER.nextLine();
     }
     
-    private int getIndex(String userInput) {
-        try {
-            return Integer.parseInt(userInput)-1;
-        }
-        catch (NumberFormatException e) {
-            System.out.println("Error:" + e);
-            return 0;
-        }
+    private int getIndex(String message) {
+        int userInput;
+        String invalidIndexMessage = "Invalid index.";
+        while (true) {
+            try {
+                userInput = Integer.parseInt(getUserInput(message));
 
+                if (userInput <= MANAGER.getTasks().size() && userInput> 0) {
+                    return userInput-1;
+                }
+                else {
+                    System.out.println(invalidIndexMessage);
+                }
+            }
+            catch (NumberFormatException e) {
+                System.out.println(invalidIndexMessage);
+            }
+        }
     }
+    
+    private Priority getUserPriority(String message) {
+        Priority priority = Priority.LOW;
+        String userInput;
+        while (true) {
+            try {
+                userInput = getUserInput(message).trim().toUpperCase();
+                if (userInput.isBlank()) {return priority;}
+
+                priority = Priority.valueOf(userInput);
+                return priority;
+                
+            }
+            catch (IllegalArgumentException e) {
+                System.out.println("Invalid priority! Try again!");
+            }
+        }
+    }
+    
+    // private LocalDateTime getUserDateTime(String message) {
+    //     String timeInput;
+    //     String dateInput;
+    //     while (true) {
+    //         try {
+
+    //             dueDateTime = LocalDate
+                
+    //         } catch (Exception e) {
+    //         }
+    //     }
+    // }
+
     
     private void showTasks() {
         if (MANAGER.getTasks().isEmpty()) {
@@ -93,21 +136,39 @@ public class CLI implements UserInterface {
             System.out.println((i + 1) + ". " + MANAGER.getTasks().get(i));
         }
     }
+    
+    private void viewTask() {
+        showTasks();
+        int index = getIndex("Choose the task to view: ");
+        if (MANAGER.getTaskByID(MANAGER.getId(index)) != null) {
+            System.out.println(MANAGER.getTaskByID(MANAGER.getId(index)));
+        }
+        else {
+            System.out.println("Task not found");
+        }
+        
+    }
         
     private void addTask() {
-        MANAGER.addTask(new Task(getUserInput("Enter title: ")));
+        String title = getUserInput("Enter title: ");
+        // String category = getUserInput("(optional) Enter category: ");
+        // String description = getUserInput("(optional) Enter description: ");
+        Priority priority = getUserPriority("(LOW, MEDIUM, HIGH, CRITICAL) (default: LOW) Enter priority: ");
+
+        
+        MANAGER.addTask(new Task(title, priority));
         System.out.println("Task added!");
     }
     
     private void removeTask() {
         showTasks();
-        int index = getIndex(getUserInput("Choose the task to remove: "));
+        int index = getIndex("Choose the task to remove: ");
         MANAGER.removeTask((MANAGER.getId(index)));
     }
     
     private void markCompleted() {
         showTasks();
-        int index = getIndex(getUserInput("Choose the task to mark as completed: "));
+        int index = getIndex("Choose the task to mark as completed: ");
         MANAGER.markCompleted(MANAGER.getId(index));
     }
 
@@ -123,7 +184,7 @@ public class CLI implements UserInterface {
     
     private void loadTasks() {
         try {
-            MANAGER.loadTasks(STORAGE.loadTasks());
+            MANAGER.setTasks(STORAGE.loadTasks());
         }
         catch (IOException e) {
             System.out.println("Error: " + e);
@@ -133,6 +194,19 @@ public class CLI implements UserInterface {
     
     private void settings() {
 
+    }
+    
+    private void SortTasks(SortBy sortBy){
+        List tasks = MANAGER.getTasks();
+        List sortedTasks;
+        switch (sortBy) {
+            case TITLE -> {
+                MANAGER.setTasks(sortedTasks);
+            }
+            case CREATION_TIME -> {}
+            case PRIORITY -> {}
+            case DONE -> {}
+        }
     }
 
 }

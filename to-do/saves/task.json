@@ -1,17 +1,26 @@
 [ {
-  "id" : "c04eb081-76b6-45e6-92ad-ad8962d4cd3e",
+  "id" : "3457a1ef-81a1-45bb-a35d-d5a618286408",
   "title" : "test0",
+  "priority" : "LOW",
   "done" : false
 }, {
-  "id" : "ff8c0a96-6408-45fe-90d9-7b36c4e1175f",
+  "id" : "921a441a-c5c9-4f2f-81fe-6a992f294f7b",
   "title" : "test1",
-  "done" : true
-}, {
-  "id" : "19c2fc44-5a5e-4fa3-a7f1-799bbe5a3587",
-  "title" : "test3",
+  "priority" : "MEDIUM",
   "done" : false
 }, {
-  "id" : "65810e34-61db-40d4-baa9-dd26e3a90e48",
-  "title" : "eat a horse",
+  "id" : "2eb5c06a-b87b-4660-b586-f3cbbed95ffd",
+  "title" : "jklajsdlkas",
+  "priority" : "LOW",
   "done" : true
+}, {
+  "id" : "f4d05cfc-b456-4e05-8423-b4dff01123d9",
+  "title" : "testo",
+  "priority" : "LOW",
+  "done" : true
+}, {
+  "id" : "9fb47631-680d-4d83-a21f-4b983090479e",
+  "title" : "tes",
+  "priority" : "HIGH",
+  "done" : false
 } ]

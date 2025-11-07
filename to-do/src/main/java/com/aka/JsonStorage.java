@@ -13,11 +13,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 
-public class FileStorage implements Storage {
+public class JsonStorage implements Storage {
     private final ObjectMapper OBJECT_MAPPER;
     private final Path SAVEFILE;
 
-    public FileStorage(String saveFilePath) {
+    public JsonStorage(String saveFilePath) {
         OBJECT_MAPPER = new ObjectMapper();
         SAVEFILE = Path.of(saveFilePath);
         OBJECT_MAPPER.enable(SerializationFeature.INDENT_OUTPUT);

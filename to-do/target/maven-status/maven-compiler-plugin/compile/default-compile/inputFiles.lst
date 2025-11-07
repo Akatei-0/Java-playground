@@ -1,7 +1,12 @@
 /home/aka/Projects/Java-playground/to-do/src/main/java/com/aka/App.java
 /home/aka/Projects/Java-playground/to-do/src/main/java/com/aka/CLI.java
-/home/aka/Projects/Java-playground/to-do/src/main/java/com/aka/FileStorage.java
+/home/aka/Projects/Java-playground/to-do/src/main/java/com/aka/JsonStorage.java
+/home/aka/Projects/Java-playground/to-do/src/main/java/com/aka/Priority.java
+/home/aka/Projects/Java-playground/to-do/src/main/java/com/aka/Settings.java
+/home/aka/Projects/Java-playground/to-do/src/main/java/com/aka/SortBy.java
 /home/aka/Projects/Java-playground/to-do/src/main/java/com/aka/Storage.java
 /home/aka/Projects/Java-playground/to-do/src/main/java/com/aka/Task.java
+/home/aka/Projects/Java-playground/to-do/src/main/java/com/aka/TaskDTO.java
 /home/aka/Projects/Java-playground/to-do/src/main/java/com/aka/TaskManager.java
+/home/aka/Projects/Java-playground/to-do/src/main/java/com/aka/TaskMapper.java
 /home/aka/Projects/Java-playground/to-do/src/main/java/com/aka/UserInterface.java

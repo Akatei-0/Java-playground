@@ -14,12 +14,22 @@ public class TaskManager {
   public List<Task> getTasks() {
     return tasks;
   }
-  
-  public void loadTasks(List<Task> tasks) {
-    this.tasks = tasks;
-  }
 
-  public void addTask(Task task) {
+  public void setTasks(List<Task> tasks){
+     this.tasks = tasks; 
+  }
+  
+  public Task getTaskByID(UUID id) {
+    for (int i = 0; i < tasks.size(); i++) {
+      if (id.equals(tasks.get(i).getId())) {
+        return tasks.get(i);
+      }
+    }
+    return null;
+  }
+  
+  
+   public void addTask(Task task) {
     tasks.add(task);
   }
 
@@ -27,7 +37,7 @@ public class TaskManager {
     for (int i = 0; i < tasks.size(); i++) {
       if (id.equals(tasks.get(i).getId())) {
         tasks.remove(i);
-        break;
+        return;
       }
     }
   }
@@ -48,7 +58,7 @@ public class TaskManager {
     for (int i = 0; i < tasks.size(); i++) {
       if (id.equals(tasks.get(i).getId())) {
         tasks.get(i).setDone();
-        break;
+        return;
       }
     }
   }
@@ -59,4 +69,5 @@ public class TaskManager {
     UUID selectedUUID = selectedTask.getId();
     return selectedUUID;
   }
+  
 }

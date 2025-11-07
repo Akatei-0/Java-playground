@@ -8,33 +8,34 @@ public class Task {
   // private String category;
   private String title;
   // private String description;
-  // private int priority;
+  private Priority priority;
   // private LocalDateTime dueDateTime;
   // private LocalDateTime dateTimeCreated;
   private boolean done;
 
-  // public Task(int id, LocalDateTime dateTimeCreated,String category, String
-  // title, String description, int priority, LocalDateTime dueDateTime, boolean
-  // done) {
-  public Task(String title) {
+  // public Task(String title, String category, String description, Priority priority, LocalDateTime dueDateTime, boolean done) {
+  public Task(String title, Priority priority){
     this.id = UUID.randomUUID();
+    // this.dateTimeCreated = LocalDateTime.now();
+    // this.category = category;
+    this.title = title;
+    // this.description = description;
+    this.priority = priority;
+    // this.dueDateTime = dueDateTime;
+    this.done = false;
+  }
+  // public Task(UUID id, LocalDateTime dateTimeCreated, String title, String category, String description, Priority priority, LocalDateTime dueDateTime, boolean done) {
+  public Task(UUID id, String title, Priority priority, boolean done) {
+    this.id = id;
     // this.dateTimeCreated = dateTimeCreated;
     // this.category = category;
     this.title = title;
     // this.description = description;
-    // this.priority = priority;
+    this.priority = priority;
     // this.dueDateTime = dueDateTime;
-    this.done = false;
-  }
-  public Task(UUID id, String title, boolean done) {
-    this.id = id;
-    this.title = title;
     this.done = done;
   }
 
-/*   public int getId() {
-    return id;
-  } */
 
   public UUID getId() {
     return id;
@@ -56,14 +57,22 @@ public class Task {
     return title;
   }
 
+  public void setTitle(String title) {
+    this.title = title;
+  }
+
   // public String getDescription() {
   //   return description;
   // }
 
-  // public int getPriority() {
-  //   return priority;
-  // }
-
+  public Priority getPriority() {
+    return priority;
+  }
+  
+  public void setPriority(Priority priority) {
+    this.priority = priority;
+  }
+  
   // public LocalDateTime getDueDateTime() {
   //   return dueDateTime;
   // }
@@ -72,24 +81,25 @@ public class Task {
     return done;
   }
 
+  public void setDone() {
+    this.done = !this.done;
+  }
+
   // public void setCategory(String category) {
   //   this.category = category;
   // }
 
-  public void setTitle(String title) {
-    this.title = title;
-  }
   
   // public void setDescription(String description) {
   //   this.description = description;
   // }
 
-  public void setDone() {
-    this.done = !this.done;
-  }
   
   @Override
   public String toString() {
-    return ((done ? "[x]" : "[ ]") + " " + title);
+    // return ((done ? "[x]" : "[ ]") + " " + title + " | priority: " + priority + String.format("%" + width + "s", dueDateTime));
+    // return String.format("[%s] [%s] %s %10s", done ? "x" : " ", priority, title, dueDateTime);
+    return String.format("[%s] [%s] %s", done ? "x" : " ", priority, title);
+    // return String.format("[%s] %s %10s", done ? "x" : " ", title, id);
   }
 }
