@@ -8,10 +8,12 @@ public class App{
 
     public static void main(String[] args) {
         String text = getUserInput("Введите текст: ");
+        System.out.println("Результаты анализа:");
         System.out.println("Общее количество символов: " + getLength(text));
         System.out.println("Количество слов: " + countWords(text));
         System.out.println("Самое длинное слово: " + getLongestWord(text));
         System.out.println("Количество предложений: " + countSentences(text));
+        System.out.println("Нормализованный текст: " + normalizeText(text));
     }
 
     private static String getUserInput(String message) {
@@ -20,7 +22,14 @@ public class App{
     }
     
     private static int getLength(String text) {
-        return text.length();
+        int count = 0;
+
+        for (char c : text.toCharArray()) {
+            if (c != ' ') {
+                count++;
+            }
+        }
+        return count;
     }
     
     private static int countWords(String text) {
@@ -28,11 +37,10 @@ public class App{
     }
     
     private static String getLongestWord(String text) {
-        String[] words = text.split("\\s+");
+        String[] words = text.split("[^а-яА-Яa-zA-Z]+");
         String longestWord = "";
     
         for (String word : words) {
-            word = word.replaceAll("[^a-zA-Z0-9]", "");      
             if (word.length() > longestWord.length()) {
                 longestWord = word;
             }
@@ -54,15 +62,25 @@ public class App{
         return countSymbol(text, '.') + countSymbol(text, '!') + countSymbol(text, '?');
     }
     
-    private static String normalizeText(String text) {
-        String[] sentences = text.split("(?<=[.!?])\\s*");
-        StringBuilder normalizedText = new StringBuilder();
-        
-        for (String sentence : sentences) {
-            if (!sentence.isEmpty()) {
-                char firstChar = Character.toUpperCase(sentence.charAt(0));
-                :
+    public static String normalizeText(String text) {
+        StringBuilder result = new StringBuilder();
+        boolean capitalizeNext = true;
+
+        for (int i = 0; i < text.length(); i++) {
+            char c = text.charAt(i);
+
+            if (capitalizeNext && Character.isLetter(c)) {
+                result.append(Character.toUpperCase(c));
+                capitalizeNext = false;
+            } else {
+                result.append(c);
+            }
+
+            if (c == '.' || c == '!' || c == '?') {
+                capitalizeNext = true;
             }
         }
+
+        return result.toString();
     }
 }
